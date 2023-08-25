@@ -1,0 +1,15 @@
+version: "3.2"
+services:
+  qemu:
+    image: dowerx/windows-qemu
+    build: ./build
+    ports:
+      - 5900:5900
+      - 5801:5801
+    devices:
+      - /dev/kvm:/dev/kvm
+    volumes:
+      - /var/lib/libvirt/images/win10-basic.qcow2:/base.qcow2:ro
+      - ./share:/share
+    env_file:
+      - .env
