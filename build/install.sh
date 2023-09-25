@@ -3,6 +3,7 @@
 set -e
 
 if [[ ! -f "$CUSTOM_SETUP_ISO" ]]; then
+    echo "Custom setup ISO was not found at \"$CUSTOM_SETUP_ISO\", creating from \"$SETUP_ISO\" and \"$AUTOUNATTEND_XML\"..."
     mkdir /custom_setup && mount "$SETUP_ISO" /mnt && cp -r /mnt/* /custom_setup && umount /mnt
     cp "$AUTOUNATTEND_XML" /custom_setup
     mkisofs \
@@ -21,13 +22,17 @@ if [[ ! -f "$CUSTOM_SETUP_ISO" ]]; then
     rm -rf /custom_setup
 fi
 
-if [[ -d "/share" ]]; then 
+if [[ -d "/share" ]]; then
+    echo "Found \"/share\", a samba server will be started..."
     NET="-net user,smb=/share -net nic,model=e1000"
 else
+    echo "Didn't find \"/share\", a samba server will *NOT* be started..."
     NET="-net user -net nic,model=e1000"
 fi
 
-[ ! -f "$BASE" ] && qemu-img create -f "$BASE_FORMAT" "$BASE" "$BASE_SIZE"
+[ ! -f "$BASE" ] && echo "Creating base disk image at \"$BASE\" ($BASE_FORMAT, $BASE_SIZE)..." && qemu-img create -f "$BASE_FORMAT" "$BASE" "$BASE_SIZE"
+
+echo "Starting qemu..."
 
 {
     set +e
@@ -39,7 +44,7 @@ fi
     for i in {1..10}; do
         echo "sendkey a"
         sleep 0.5
-    done | nc -q 10 localhost $MONITOR_PORT
+    done | nc -q 10 localhost $MONITOR_PORT > /dev/null
 } & {
     qemu-system-x86_64 \
         -enable-kvm \

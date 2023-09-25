@@ -2,14 +2,18 @@
 
 set -e
 
-if [[ -d "/share" ]]; then 
+if [[ -d "/share" ]]; then
+    echo "Found \"/share\", a samba server will be started..."
     NET="-net user,smb=/share -net nic,model=e1000"
 else
+    echo "Didn't find \"/share\", a samba server will *NOT* be started..."
     NET="-net user -net nic,model=e1000"
 fi
 
 [ -f "/overlay.qcow2" ] && rm /overlay.qcow2
 qemu-img create -o "backing_file=$BASE,backing_fmt=$BASE_FORMAT" -f qcow2 /overlay.qcow2
+
+echo "Starting qemu..."
 
 qemu-system-x86_64 \
     -enable-kvm \
