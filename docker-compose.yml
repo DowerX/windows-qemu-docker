@@ -9,7 +9,7 @@ services:
     devices:
       - /dev/kvm:/dev/kvm
     volumes:
-      - /var/lib/libvirt/images/win10-2.qcow2:/base.qcow2:ro
+      - image:/image:ro
       - ./share:/share
     env_file:
       - .env
@@ -22,10 +22,13 @@ services:
     devices:
       - /dev/kvm:/dev/kvm
     volumes:
-      - /var/lib/libvirt/images/win10-2.qcow2:/base.qcow2:rw
+      - image:/image:rw
       - /home/${USER}/Downloads/Win10_22H2_English_x64v1.iso:/setup.iso:ro
       - ./share:/share
       - ./setup:/setup
     privileged: true
     env_file:
       - .env
+
+volumes:
+  image:
