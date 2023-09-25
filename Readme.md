@@ -4,7 +4,8 @@
 This project makes it possible to automate tasks on Windows, so you can use the results on Linux afterwards (eg. installing vs_buildtools for later use with [Wine](https://www.winehq.org/)).
 
 ## Required disk image
-*(tested with Windows 10 Pro ISO)*
+*(tested with Windows 10 22H2 English ISO)* \
+This image can be created by using the install service!
 - Pro or Enterprise (to [disable updates](https://www.easeus.com/backup-recovery/how-to-stop-windows-10-from-automatically-update.html))
 - no password (auto login)
 - [disable User Account Control](https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-to-turn-off-User-Account-Control-in-Windows.html)
@@ -17,5 +18,5 @@ You can access the VM's desktop with VNC on port 5900 or you can use the qemu mo
 
 ## TODO
 - setup a firewall for the VM
-- automate Windows installation, post install setup
+- ~~automate Windows installation, post install setup~~
 - replace the SMB network share with a disk image mount (faster copy)

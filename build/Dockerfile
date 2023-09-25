@@ -8,14 +8,21 @@ RUN \
     apt update && apt upgrade -y && \
     apt install -y --no-install-recommends \
         qemu-system qemu-utils qemu-kvm \
-        samba \
+        samba mkisofs mount netcat-traditional \
     && apt autoremove -y && apt clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY start.sh /start.sh
+COPY install.sh /install.sh
+COPY autounattend.xml /autounattend.xml
 
 ENV BASE=/base.qcow2
 ENV BASE_FORMAT=qcow2
+ENV BASE_SIZE=40GB
+
+ENV SETUP_ISO=/setup.iso
+ENV CUSTOM_SETUP_ISO=/custom_setup.iso
+ENV AUTOUNATTEND_XML=/autounattend.xml
 
 ENV KEYBOARD=en-gb
 ENV MEMORY=4096

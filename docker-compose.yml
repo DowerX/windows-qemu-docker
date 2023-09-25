@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  qemu:
+  run:
     image: dowerx/windows-qemu
     build: ./build
     ports:
@@ -9,7 +9,23 @@ services:
     devices:
       - /dev/kvm:/dev/kvm
     volumes:
-      - /var/lib/libvirt/images/win10-basic.qcow2:/base.qcow2:ro
+      - /var/lib/libvirt/images/win10-2.qcow2:/base.qcow2:ro
       - ./share:/share
+    env_file:
+      - .env
+  install:
+    image: dowerx/windows-qemu
+    entrypoint: /install.sh
+    ports:
+      - 5900:5900
+      - 5801:5801
+    devices:
+      - /dev/kvm:/dev/kvm
+    volumes:
+      - /var/lib/libvirt/images/win10-2.qcow2:/base.qcow2:rw
+      - /home/${USER}/Downloads/Win10_22H2_English_x64v1.iso:/setup.iso:ro
+      - ./share:/share
+      - ./setup:/setup
+    privileged: true
     env_file:
       - .env

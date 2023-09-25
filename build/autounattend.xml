@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>en-US</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>0809:00000809</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <CreatePartitions>
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Type>Primary</Type>
+                            <Size>100</Size>
+                        </CreatePartition>
+                        <CreatePartition wcm:action="add">
+                            <Extend>true</Extend>
+                            <Order>2</Order>
+                            <Type>Primary</Type>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <ModifyPartition wcm:action="add">
+                            <Active>true</Active>
+                            <Format>NTFS</Format>
+                            <Label>System Reserved</Label>
+                            <Order>1</Order>
+                            <PartitionID>1</PartitionID>
+                            <TypeID>0x27</TypeID>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Active>true</Active>
+                            <Format>NTFS</Format>
+                            <Label>OS</Label>
+                            <Letter>C</Letter>
+                            <Order>2</Order>
+                            <PartitionID>2</PartitionID>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                    <DiskID>0</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
+                </Disk>
+            </DiskConfiguration>
+            <ImageInstall>
+                <OSImage>
+                    <InstallTo>
+                        <DiskID>0</DiskID>
+                        <PartitionID>2</PartitionID>
+                    </InstallTo>
+                    <InstallToAvailablePartition>false</InstallToAvailablePartition>
+                </OSImage>
+            </ImageInstall>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+                <FullName>user</FullName>
+                <Organization></Organization>
+                <ProductKey>
+                    <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
+                </ProductKey>
+            </UserData>
+        </component>
+    </settings>
+    <settings pass="offlineServicing">
+        <component name="Microsoft-Windows-LUA-Settings" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <EnableLUA>false</EnableLUA>
+        </component>
+    </settings>
+    <settings pass="generalize">
+        <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipRearm>1</SkipRearm>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>0809:00000809</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipAutoActivation>true</SkipAutoActivation>
+        </component>
+        <component name="Microsoft-Windows-SQMApi" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <CEIPEnabled>0</CEIPEnabled>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ComputerName>vm-PC</ComputerName>
+            <ProductKey>W269N-WFGWX-YVC9B-4J6C9-T83GX</ProductKey>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64"
+            publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <AutoLogon>
+                <Password>
+                    <Value></Value>
+                    <PlainText>true</PlainText>
+                </Password>
+                <Enabled>true</Enabled>
+                <Username>user</Username>
+            </AutoLogon>
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <NetworkLocation>Home</NetworkLocation>
+                <SkipUserOOBE>true</SkipUserOOBE>
+                <SkipMachineOOBE>true</SkipMachineOOBE>
+                <ProtectYourPC>1</ProtectYourPC>
+            </OOBE>
+            <UserAccounts>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value></Value>
+                            <PlainText>true</PlainText>
+                        </Password>
+                        <Description></Description>
+                        <DisplayName>user</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>user</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+            <RegisteredOrganization></RegisteredOrganization>
+            <RegisteredOwner>user</RegisteredOwner>
+            <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
+            <FirstLogonCommands>
+                <SynchronousCommand wcm:action="add">
+                    <Description>Control Panel View</Description>
+                    <Order>1</Order>
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v StartupPage /t REG_DWORD /d 1 /f</CommandLine>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Description>Control Panel Icon Size</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v AllItemsIconView /t REG_DWORD /d 0 /f</CommandLine>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>cmd /C wmic useraccount where name="user" set PasswordExpires=false</CommandLine>
+                    <Description>Password Never Expires</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>4</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>cmd /C echo start \\10.0.2.4\qemu\job.bat > "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\run-job.bat"</CommandLine>
+                    <Description>Create run-job.bat</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>5</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Associations" /v "LowRiskFileTypes" /t REG_SZ /d ".avi;.bat;.cmd;.exe;.htm;.html;.lnk;.mpg;.mpeg;.mov;.mp3;.mp4;.mkv;.msi;.m3u;.rar;.reg;.txt;.vbs;.wav;.zip;.7z" /f</CommandLine>
+                    <Description>Disable Open File Security Warning</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>6</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v AU /t REG_DWORD /d 0 /f</CommandLine>
+                    <Description>Disable updates 1</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>7</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v AUOptions /t REG_DWORD /d 2 /f</CommandLine>
+                    <Description>Disable updates 2</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>8</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>cmd /C shutdown /s /f /t 60</CommandLine>
+                    <Description>Shutdown</Description>
+                </SynchronousCommand>
+            </FirstLogonCommands>
+            <TimeZone>Central Europe Standard Time</TimeZone>
+        </component>
+    </settings>
+</unattend>
