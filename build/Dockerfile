@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     apt update && apt upgrade -y && \
     apt install -y --no-install-recommends \
-        qemu-system qemu-utils qemu-kvm \
+        qemu-system-x86-64 qemu-utils qemu-kvm \
         samba mkisofs mount netcat-traditional \
     && apt autoremove -y && apt clean && \
     rm -rf /var/lib/apt/lists/*
@@ -18,7 +18,7 @@ COPY autounattend.xml /autounattend.xml
 
 ENV BASE=/base.qcow2
 ENV BASE_FORMAT=qcow2
-ENV BASE_SIZE=40GB
+ENV BASE_SIZE=40G
 
 ENV SETUP_ISO=/setup.iso
 ENV CUSTOM_SETUP_ISO=/custom_setup.iso
